@@ -1,0 +1,34 @@
+.container{
+    height: 500px;
+    width: 500px;
+    background-color: darkgoldenrod;
+}
+
+.container .item{
+    border: 4px solid yellowgreen;
+}
+
+.container .item:nth-child(1){
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    z-index: 1;
+    position: absolute;
+    top: 50px;
+}
+
+.container .item:nth-child(2){
+    width: 100px;
+    height: 140px;
+    background-color: #404040;
+    position: absolute;
+    top: 120px;
+}
+
+.container .item:nth-child(3){
+    width: 100px;
+    height: 150px;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 30px;
+}
