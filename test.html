@@ -7,76 +7,41 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- header>ul>li -->
-    <header>
-        <ul>
-            <li></li>
-        </ul>
-    </header>
-    <!-- section>artic>h1+p -->
-    <section>
-        <artic>
-            <h1></h1>
-            <p></p>
-        </artic>
-    </section>
-    <!-- ul>li*10 -->
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-    <!-- ul#name>li.item -->
-    <ul id="name">
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-    </ul>
-    <!-- container>(header>nav>ul>li*5>a)+(#content>section)+footer -->
-    <div class="container">
-        <header>
-            <nav>
-                <ul>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                </ul>
-            </nav>
-        </header>
-        <div id="content">
-            <section></section>
-        </div>
-        <footer></footer>
-    </div>
-    <!-- td[title="name" colspan="5"] -->
-    <td title="name" colspan="5"></td>
-    <td title="name" colspan="5"></td>
-    <td title="name" colspan="5"></td>
-    <td title="name" colspan="5"></td>
-    <td title="name" colspan="5"></td>
-    <!-- ul.list>li.item$*5>{$} -->
-    <ul class="list">
-        <li class="item1">1</li>
-        <li class="item2">2</li>
-        <li class="item3">3</li>
-        <li class="item4">4</li>
-        <li class="item5">5</li>
-    </ul>
+    숫자 1 : <input type="text" id="number1" value="9"><br>
+    숫자 2 : <input type="text" id="number2" value="6"><br>
+    <input type="button" value="+" onclick="add()" class="button">
+    <input type="button" value="-" onclick="sub()" class="button">
+    <input type="button" value="*" onclick="mul()" class="button">
+    <input type="button" value="/" onclick="divide()" class="button"><br>
+    연산결과 : <input type="text" id="result" value="">
+    <script>
+        let num1 = document.getElementById("number1");
+        let num2 = document.getElementById("number2");
+        let result = document.getElementById("result");
+
+        function add() {
+            let sum = parseInt(num1.value) + parseInt(num2.value);
+            result.value = sum;
+        }
+        function sub() {
+            let difference = parseInt(num1.value) - parseInt(num2.value);
+            result.value = difference;
+        }
+        function mul() {
+            let product = parseInt(num1.value) * parseInt(num2.value);
+            result.value = product;
+        }
+        function divide() {
+            let quotient = parseFloat(num1.value) / parseFloat(num2.value);
+            result.value = quotient;
+        }
+    </script>
+    <style>
+        .button {
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+        }
+    </style>
 </body>
 </html>
