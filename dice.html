@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <style>
+        * {
+            text-align: center;
+        }
+
+        #board {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #board tr td {
+            border: 1px solid white;
+            background: #34da79;
+            width: 22px;
+            height: 22px;
+            text-align: center;
+        }
+
+        #board tr td.clicked {
+            background: #6c5ee7;
+        }
+
+        #board tr td.mine {
+            background: #FF0000;
+        }
+
+        .number {
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>지뢰찾기</h1>
+    <table id="board">
+    </table><br>
+    <BUTTON onclick="genGrid();">새로운 게임</BUTTON>
+    <script>
+        let grid = document.getElementById("board");
+        let gameOver = false;
+        const rows = 8;
+        const cols = 8;
+
+        function genGrid() {
+            grid.innerHTML = "";
+            gameOver = false;
+
+            for (let i = 0; i < rows; i++) {
+                let row = grid.insertRow(i);
+                for (let j = 0; j < cols; j++) {
+                    let cell = row.insertCell(j);
+                    cell.classList.add("number");
+                    cell.addEventListener("click", function () {
+                        clickBox(this);
+                    });
+
+                    if (Math.random() < 0.3) {
+                        cell.setAttribute("mine", "true");
+                    } else {
+                        cell.setAttribute("mine", "false");
+                    }
+                }
+            }
+        }
+
+        function countMines(row, col) {
+            let mineCount = 0;
+            const neighbors = [
+                { x: -1, y: -1 },
+                { x: -1, y: 0 },
+                { x: -1, y: 1 },
+                { x: 0, y: -1 },
+                { x: 0, y: 1 },
+                { x: 1, y: -1 },
+                { x: 1, y: 0 },
+                { x: 1, y: 1 },
+            ];
+
+            for (let neighbor of neighbors) {
+                let newRow = row + neighbor.x;
+                let newCol = col + neighbor.y;
+
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+                    let neighborCell = grid.rows[newRow].cells[newCol];
+                    if (neighborCell.getAttribute("mine") === "true") {
+                        mineCount++;
+                    }
+                }
+            }
+            return mineCount;
+        }
+
+        function clickBox(cell) {
+            if (gameOver) return;
+
+            if (cell.getAttribute("mine") === "true") {
+                cell.className = "mine";
+                alert("지뢰를 밟았구만 ㅋ");
+                gameOver = true;
+            } else {
+                cell.className = "clicked";
+                let mineCount = countMines(cell.parentNode.rowIndex, cell.cellIndex);
+                if (mineCount > 0) {
+                    cell.innerHTML = mineCount;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
