@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quiz</title>
+</head>
+<body>
+    <h1>Math Quiz</h1>
+    <p id="problemText">문제: </p>
+    <input type="text" id="answer">
+    <button onclick="checkAnswer()">정답 확인</button>
+    <p id="result"></p>
+    <p id="score">점수: <span id="scoreValue">0</span></p>
+
+    <script>
+        let score = 0;
+        let currentProblem = ""; 
+        let currentAnswer = 0; 
+
+        function createProblem() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const sachickyeonsan = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+            currentProblem = `${num1} ${sachickyeonsan} ${num2}`;
+            currentAnswer = eval(currentProblem);
+            document.getElementById("problemText").textContent = `문제: ${currentProblem}`;
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseFloat(document.getElementById("answer").value);
+            if (userAnswer === currentAnswer) {
+                score++;
+                document.getElementById("result").textContent = "정답입니다!";
+            } else {
+                document.getElementById("result").textContent = `틀렸습니다! 정답은 ${currentAnswer} 입니다.`;
+            }
+            document.getElementById("scoreValue").textContent = score;
+            document.getElementById("answer").value = "";
+
+            createProblem(); 
+        }
+
+        createProblem(); 
+    </script>
+</body>
+</html>
