@@ -1,0 +1,51 @@
+<html>
+<head>
+    <style>
+        #dogPic, #catPic {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        #dogPic {
+            background: blue;
+            top: 50px;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <img src="dog.jpg" id="dogPic">
+    <img src="cat.jpg" id="catPic">
+    <script>
+        var dog = document.getElementById("dogPic");
+        var cat = document.getElementById("catPic");
+        var moving = false;
+        var image; // 변수를 정의하여 image를 전역 변수로 사용
+
+        dog.addEventListener("mousedown", initialClick, false);
+        cat.addEventListener("mousedown", initialClick, false);
+
+        function move(e) {
+            var newX = e.clientX;
+            var newY = e.clientY;
+
+            image.style.left = newX + "px";
+            image.style.top = newY + "px";
+        }
+
+        function initialClick(e) {
+            if (moving) {
+                document.removeEventListener("mousemove", move);
+                moving = !moving;
+                return;
+            }
+
+            moving = !moving;
+            image = this; // 클릭한 이미지를 전역 변수로 설정
+
+            document.addEventListener("mousemove", move, false);
+        }
+    </script>
+</body>
+</html>
