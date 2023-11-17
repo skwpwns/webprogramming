@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+    <canvas id="myCanvas" width="300" height="200"></canvas>
+    <canvas id="nextCanvas" width="200" height="100"></canvas>
+    <script>
+        let canvas = document.getElementById('myCanvas');
+        let context = canvas.getContext('2d');
+        context.beginPath();
+        context.moveTo(90, 130);
+        context.bezierCurveTo(140, 10, 288, 10, 288, 130);
+        context.lineWidth = 10;
+        context.strokeStyle = 'black';
+        context.stroke();
+
+        let nextcanvas = document.getElementById('myCanvas');
+        context.beginPath();
+        context.moveTo(90, 200);
+        context.bezierCurveTo(70, 80, 200, 5, 200, 65);
+        context.lineWidth = 10;
+        context.strokeStyle = 'black';
+        context.stroke();
+        </script>
+    </body>
+    </html>
